@@ -1,6 +1,7 @@
 package com.meituan.okhttp.client;
 
 import com.meituan.okhttp.client.interceptor.LoggingInterceptor;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 import okio.BufferedSink;
 import org.jetbrains.annotations.NotNull;
@@ -8,7 +9,7 @@ import org.jetbrains.annotations.Nullable;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-
+@Slf4j
 public class OkHttpRequest {
     public static final String URL = "http://www.baidu.com";
     public static final MediaType MEDIA_TYPE_JSON = MediaType
@@ -39,6 +40,7 @@ public class OkHttpRequest {
 
     }
 
+    @org.junit.Test
     public void syncGet() {
         Request request = new Request.Builder().url(URL).build();
         final Call call = client.newCall(request);
@@ -47,7 +49,8 @@ public class OkHttpRequest {
             public void run() {
                 try {
                     Response response = call.execute();
-                     System.out.println("syncGet: " + response.body().string());
+
+                    log.info("syncGet: " + response.body().string());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
