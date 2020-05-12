@@ -11,7 +11,7 @@ public class Main {
         okHttpRequest.syncGet();
         okHttpRequest.aSyncGet();
 
-        log.info("all");
+        log.info("all-testc");
 
     }
 }
